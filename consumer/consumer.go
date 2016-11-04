@@ -207,7 +207,7 @@ func (c *Consumer) ack(d amqp.Delivery, exitCode int) error {
 
 func New(cfg *config.Config, factory *command.CommandFactory, errLogger, infLogger *log.Logger) (*Consumer, error) {
 	uri := fmt.Sprintf(
-		"amqp://%s:%s@%s:%s%s",
+		"amqp://%s:%s@%s:%s%s?heartbeat=60",
 		url.QueryEscape(cfg.RabbitMq.Username),
 		url.QueryEscape(cfg.RabbitMq.Password),
 		cfg.RabbitMq.Host,
